@@ -45,26 +45,26 @@
 <body class="bg-slate-50 font-sans text-slate-800 h-screen flex flex-col overflow-hidden antialiased">
 
     <!-- ===== NAVIGATION ===== -->
-    <nav class="bg-white border-b border-slate-200 px-4 sm:px-6 flex flex-wrap sm:flex-nowrap items-center justify-between py-3 sm:py-0 sm:h-14 shrink-0 shadow-sm gap-3">
-        <div class="flex items-center gap-1.5 shrink-0">
+    <nav class="bg-white border-b border-slate-200 px-6 flex items-center h-14 shrink-0 shadow-sm">
+        <div class="flex items-center gap-1.5 mr-8">
             <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
                 <span class="text-white text-sm font-bold">M</span>
             </div>
             <span class="font-bold text-slate-800 text-sm tracking-tight">MIKY</span>
         </div>
-        <div class="flex gap-1.5 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0" style="scrollbar-width: none;">
-            <a href="/search" class="px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors whitespace-nowrap min-h-[44px] flex items-center">
+        <div class="flex gap-1">
+            <a href="/search" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors">
                 🔍 Discovery Search
             </a>
-            <a href="/matrix" class="px-4 py-2.5 rounded-lg text-sm font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 transition-colors whitespace-nowrap min-h-[44px] flex items-center">
+            <a href="/matrix" class="px-4 py-2 rounded-lg text-sm font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 transition-colors">
                 📊 Matrix Hub
             </a>
         </div>
     </nav>
 
     <!-- ===== PAGE HEADER ===== -->
-    <div class="bg-white border-b border-slate-200 px-4 sm:px-6 py-4 shrink-0">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="bg-white border-b border-slate-200 px-6 py-4 shrink-0">
+        <div class="flex items-center justify-between">
             <div>
                 <h1 class="text-xl font-bold text-slate-900 flex items-center gap-2">
                     Matrix Hub
@@ -72,9 +72,9 @@
                 </h1>
                 <p class="text-sm text-slate-500 mt-0.5">AI-enriched company intelligence database</p>
             </div>
-            <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
+            <div class="flex items-center gap-3">
                 <div id="enrichStatus" class="text-sm text-slate-500 flex items-center gap-2"></div>
-                <button id="enrichBtn" onclick="startEnrich()" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-5 py-3 sm:py-2.5 rounded-lg text-sm font-semibold shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 w-full sm:w-auto min-h-[44px]">
+                <button id="enrichBtn" onclick="startEnrich()" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold shadow-sm hover:shadow-md transition-all flex items-center gap-2">
                     ✨ Run AI Enrichment
                 </button>
             </div>
@@ -82,7 +82,7 @@
     </div>
 
     <!-- ===== STATS ROW ===== -->
-    <div class="bg-white border-b border-slate-200 px-4 sm:px-6 py-3 shrink-0">
+    <div class="bg-white border-b border-slate-200 px-6 py-3 shrink-0">
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
             <div class="bg-slate-50 rounded-xl px-4 py-3 border border-slate-100">
                 <div id="statTotal" class="text-2xl font-extrabold text-indigo-600">—</div>
@@ -116,37 +116,54 @@
     </div>
 
     <!-- ===== FILTER BAR ===== -->
-    <div class="bg-white border-b border-slate-200 px-4 sm:px-6 py-3 shrink-0">
-        <div class="flex flex-col xl:flex-row xl:flex-wrap items-stretch xl:items-center gap-3">
-            <div class="flex flex-col sm:flex-row gap-3 w-full xl:w-auto">
-                <input type="text" id="filterQ" placeholder="Search company name..." inputmode="search"
-                    class="px-3.5 py-3 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition w-full sm:w-52 placeholder:text-slate-400 min-h-[44px]">
-                <input type="text" id="filterCity" placeholder="Filter by city / country..." inputmode="search"
-                    class="px-3.5 py-3 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition w-full sm:w-52 placeholder:text-slate-400 min-h-[44px]">
-            </div>
-            <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 w-full xl:w-auto">
-                <select id="filterStatus" class="px-3.5 py-3 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition text-slate-600 cursor-pointer min-h-[44px] w-full sm:w-auto">
-                    <option value="all">Status: All</option>
-                    <option value="pending">⏳ Pending</option>
-                    <option value="completed">✅ Completed</option>
-                    <option value="scraped">🔍 Scraped</option>
-                </select>
-                <select id="filterEmail" class="px-3.5 py-3 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition text-slate-600 cursor-pointer min-h-[44px] w-full sm:w-auto">
-                    <option value="">Email: All</option>
-                    <option value="true">📧 Has Email</option>
-                    <option value="false">❌ No Email</option>
-                </select>
-                <select id="filterPhone" class="px-3.5 py-3 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition text-slate-600 cursor-pointer min-h-[44px] w-full sm:w-auto">
-                    <option value="">Phone: All</option>
-                    <option value="true">📞 Has Phone</option>
-                    <option value="false">❌ No Phone</option>
-                </select>
-                <select id="filterSort" class="px-3.5 py-3 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition text-slate-600 cursor-pointer min-h-[44px] w-full sm:w-auto">
-                    <option value="newest">Newest First</option>
-                    <option value="oldest">Oldest First</option>
-                </select>
-            </div>
-            <div class="mt-1 xl:mt-0 xl:ml-auto text-xs text-slate-400 font-medium w-full xl:w-auto text-center xl:text-right" id="pageInfo"></div>
+    <div class="bg-white border-b border-slate-200 px-6 py-3 shrink-0">
+        <div class="flex flex-wrap items-center gap-2.5">
+            <input type="text" id="filterQ" placeholder="Search company name..."
+                class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition w-44 placeholder:text-slate-400">
+            <input type="text" id="filterCity" placeholder="Filter by city / country..."
+                class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition w-44 placeholder:text-slate-400">
+            
+            <select id="filterCategory" class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition text-slate-600 cursor-pointer">
+                <option value="all">Category: All</option>
+                <option value="LED">💡 LED Profile</option>
+                <option value="Tile">🔲 Tile Trim</option>
+                <option value="Furniture">🪑 Furniture Profile</option>
+                <option value="Glass">🚿 Glass Profile</option>
+                <option value="Decorative">🎨 Decorative Profile</option>
+                <option value="Extrusion">⚙️ Extrusion</option>
+            </select>
+
+            <select id="filterStatus" class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition text-slate-600 cursor-pointer">
+                <option value="all">Status: All</option>
+                <option value="pending">⏳ Pending</option>
+                <option value="completed">✅ Completed</option>
+                <option value="scraped">🔍 Scraped</option>
+            </select>
+            <select id="filterEmail" class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition text-slate-600 cursor-pointer">
+                <option value="">Email: All</option>
+                <option value="true">📧 Has Email</option>
+                <option value="false">❌ No Email</option>
+            </select>
+            <select id="filterPhone" class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition text-slate-600 cursor-pointer">
+                <option value="">Phone: All</option>
+                <option value="true">📞 Has Phone</option>
+                <option value="false">❌ No Phone</option>
+            </select>
+            <select id="filterWebsite" class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition text-slate-600 cursor-pointer">
+                <option value="">Website: All</option>
+                <option value="true">🌐 Has Website</option>
+                <option value="false">❌ No Website</option>
+            </select>
+            <select id="filterSort" class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition text-slate-600 cursor-pointer">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+            </select>
+
+            <button id="resetFiltersBtn" title="Reset all filters" class="px-3 py-2 text-xs font-semibold text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
+                ↺ Reset
+            </button>
+
+            <div class="ml-auto text-xs text-slate-400 font-medium" id="pageInfo"></div>
         </div>
     </div>
 
@@ -159,9 +176,9 @@
             </div>
             <!-- Pagination -->
             <div id="paginationBar" class="flex items-center justify-center gap-2 mt-6 mb-4 hidden">
-                <button onclick="goPage('prev')" id="prevBtn" class="px-4 py-2.5 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition min-h-[44px] flex items-center justify-center">← Prev</button>
+                <button onclick="goPage('prev')" id="prevBtn" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition">← Prev</button>
                 <span id="pageLabel" class="text-sm font-medium text-slate-500 px-2">Page 1</span>
-                <button onclick="goPage('next')" id="nextBtn" class="px-4 py-2.5 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition min-h-[44px] flex items-center justify-center">Next →</button>
+                <button onclick="goPage('next')" id="nextBtn" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition">Next →</button>
             </div>
         </div>
         <!-- Map Panel -->
@@ -171,22 +188,27 @@
     </div>
 
     <!-- ===== MODAL ===== -->
-    <div id="companyModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 hidden" onclick="closeModal(event)">
-        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm modal-bg"></div>
-        <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto modal-panel flex flex-col" onclick="event.stopPropagation()">
+    <div id="companyModal" class="fixed inset-0 z-[9999] flex items-center justify-center p-4 hidden" onclick="closeModal(event)">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm modal-bg"></div>
+        <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[85vh] overflow-y-auto modal-panel z-10" onclick="event.stopPropagation()">
             <!-- Close -->
-            <button onclick="closeModal(event)" class="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-500 flex items-center justify-center text-slate-400 text-lg transition-colors z-10">&times;</button>
+            <button onclick="closeModal(event)" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-500 flex items-center justify-center text-slate-400 text-lg transition-colors z-20">&times;</button>
             <!-- Header -->
-            <div class="px-6 pt-6 pb-4 border-b border-slate-100">
-                <h2 id="modalName" class="text-lg font-bold text-slate-900 pr-10">Company Name</h2>
-                <p id="modalLocation" class="text-sm text-slate-500 mt-1">📍 Location</p>
-                <span id="modalStatusBadge" class="inline-block mt-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"></span>
+            <div class="px-6 pt-6 pb-4 border-b border-slate-100 flex items-start justify-between gap-3">
+                <div>
+                    <h2 id="modalName" class="text-lg font-bold text-slate-900 pr-4">Company Name</h2>
+                    <p id="modalLocation" class="text-sm text-slate-500 mt-1">📍 Location</p>
+                    <span id="modalStatusBadge" class="inline-block mt-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"></span>
+                </div>
+                <button onclick="enrichSingleCompany(event, currentModalId)" id="modalEnrichBtn" class="px-3 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white rounded-lg text-xs font-semibold shadow hover:shadow-md transition flex items-center gap-1.5 whitespace-nowrap">
+                    ✨ AI Enrich
+                </button>
             </div>
             <!-- Body -->
             <div class="px-6 py-4 space-y-4">
                 <div>
                     <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Email</div>
-                    <div id="modalEmail" class="text-sm text-slate-700 break-all"><span class="italic text-slate-400">Not Available</span></div>
+                    <div id="modalEmail" class="text-sm text-slate-700"><span class="italic text-slate-400">Not Available</span></div>
                 </div>
                 <div>
                     <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Phone</div>
@@ -194,7 +216,7 @@
                 </div>
                 <div>
                     <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Website</div>
-                    <div id="modalWebsite" class="text-sm text-slate-700 break-all"><span class="italic text-slate-400">Not Available</span></div>
+                    <div id="modalWebsite" class="text-sm text-slate-700"><span class="italic text-slate-400">Not Available</span></div>
                 </div>
                 <div>
                     <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Address</div>
@@ -215,6 +237,8 @@
 
     let map = null;
     let markersGroup = null;
+    let markersMap = {};
+    let currentModalId = null;
     let selectedIds = new Set();
     let currentData = [];
     let currentPage = 1;
@@ -303,11 +327,25 @@
     function openModal(id) {
         const c = currentData.find(x => (x?._id ?? '') === id);
         if (!c) return;
+        currentModalId = id;
 
         const el = (i) => document.getElementById(i);
 
         el('modalName').innerText = firstVal(c?.name) || firstVal(c?.buyer_name) || 'Unknown';
-        el('modalLocation').innerText = '📍 ' + (firstVal(c?.location_string) || firstVal(c?.destination_country) || 'Unknown');
+        el('modalLocation').innerText = '📍 ' + (firstVal(c?.location_string) || firstVal(c?.location) || firstVal(c?.destination_country) || 'Unknown');
+
+        // Focus & pan map to this company's coordinates
+        const lat = c?.latitude;
+        const lng = c?.longitude;
+        if (typeof lat === 'number' && typeof lng === 'number' && isFinite(lat) && isFinite(lng) && map) {
+            try {
+                map.flyTo([lat, lng], 13, { duration: 0.8 });
+                if (markersMap[id]) {
+                    setTimeout(() => markersMap[id].openPopup(), 400);
+                }
+            } catch (err) { console.warn('Map flyTo error:', err); }
+        }
+        setTimeout(() => { if (map) map.invalidateSize(); }, 200);
 
         const status = c?.ai_status ?? 'pending';
         const badge = el('modalStatusBadge');
@@ -375,12 +413,14 @@
     async function loadData() {
         const q = document.getElementById('filterQ')?.value ?? '';
         const city = document.getElementById('filterCity')?.value ?? '';
+        const category = document.getElementById('filterCategory')?.value ?? '';
         const status = document.getElementById('filterStatus')?.value ?? 'all';
         const has_email = document.getElementById('filterEmail')?.value ?? '';
         const has_phone = document.getElementById('filterPhone')?.value ?? '';
+        const has_website = document.getElementById('filterWebsite')?.value ?? '';
         const sort = document.getElementById('filterSort')?.value ?? 'newest';
 
-        const params = new URLSearchParams({ q, city, status, has_email, has_phone, sort, page: currentPage, per_page: PER_PAGE });
+        const params = new URLSearchParams({ q, city, category, status, has_email, has_phone, has_website, sort, page: currentPage, per_page: PER_PAGE });
 
         try {
             console.log('Fetching matrix data:', params.toString());
@@ -418,6 +458,7 @@
             if (!grid) return;
             grid.innerHTML = '';
             if (markersGroup) markersGroup.clearLayers();
+            markersMap = {};
 
             if (currentData.length === 0) {
                 grid.innerHTML = `
@@ -434,7 +475,7 @@
                 if (!c) return;
                 const id = c._id ?? '';
                 const name = c.name ?? c.buyer_name ?? 'Unnamed';
-                const loc = c.location_string ?? c.destination_country ?? '';
+                const loc = c.location_string ?? c.location ?? c.destination_country ?? '';
                 const email = c.email ?? '';
                 const phone = c.phone ?? '';
                 const website = c.website ?? '';
@@ -455,9 +496,7 @@
                     : '';
 
                 card.innerHTML = `
-                    <div onclick="toggleSelection(event, '${id}')" class="absolute top-1 right-1 p-2 sm:p-0 sm:top-3 sm:right-3 cursor-pointer z-10 flex items-center justify-center w-10 h-10 sm:w-auto sm:h-auto">
-                        <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all hover:scale-110 ${selCircleClasses}">${selCheck}</div>
-                    </div>
+                    <div onclick="toggleSelection(event, '${id}')" class="absolute top-3 right-3 w-6 h-6 rounded-full border-2 flex items-center justify-center cursor-pointer transition-all hover:scale-110 ${selCircleClasses}">${selCheck}</div>
                     <h3 class="text-sm font-bold text-slate-800 pr-8 mb-1 leading-snug">${esc(name)}</h3>
                     <p class="text-xs text-slate-500 mb-3">📍 ${esc(loc) || '<span class="italic text-slate-400">No location</span>'}</p>
                     <div class="flex flex-wrap gap-1.5 mb-3">
@@ -467,6 +506,7 @@
                     </div>
                     <div class="flex items-center justify-between pt-2.5 border-t border-slate-100">
                         <span class="px-2.5 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-wider ${statusBadgeClasses(aiStatus)}">${esc(aiStatus)}</span>
+                        ${aiStatus !== 'completed' ? `<button onclick="enrichSingleCompany(event, '${id}')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition-all flex items-center gap-1">✨ Enrich</button>` : ''}
                     </div>
                 `;
                 grid.appendChild(card);
@@ -483,6 +523,7 @@
                         });
                         marker.bindPopup(`<b>${esc(name)}</b><br><span style="text-transform:capitalize">${esc(aiStatus)}</span>`);
                         markersGroup.addLayer(marker);
+                        markersMap[id] = marker;
                         bounds.push([lat, lng]);
                     } catch (e) { console.warn('Marker error:', e); }
                 }
@@ -512,14 +553,50 @@
         return d.innerHTML;
     }
 
-    // ---------- AI Enrichment (unchanged SSE logic) ----------
+    // ---------- AI Enrichment ----------
+    async function enrichSingleCompany(e, id) {
+        if (e) e.stopPropagation();
+        if (!id) return;
+        const statusDiv = document.getElementById('enrichStatus');
+        if (statusDiv) statusDiv.innerHTML = '<div class="w-4 h-4 border-2 border-emerald-300 border-t-emerald-600 rounded-full spinner"></div> <span class="text-xs">Enriching company data with AI...</span>';
+        
+        const enrichBtn = document.getElementById('modalEnrichBtn');
+        if (enrichBtn) { enrichBtn.disabled = true; enrichBtn.innerText = 'Enriching...'; }
+
+        try {
+            const res = await fetch('/api/enrich_one', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ id })
+            });
+            const data = await res.json();
+            if (res.ok && data?.company) {
+                if (statusDiv) statusDiv.innerHTML = `<span class="text-emerald-600 font-semibold text-xs">✓ ${esc(data.message)}</span>`;
+                const idx = currentData.findIndex(x => (x?._id ?? '') === id);
+                if (idx !== -1) currentData[idx] = data.company;
+                loadData();
+                loadStats();
+                if (currentModalId === id) openModal(id);
+            } else {
+                alert(data?.error || 'Enrichment failed');
+                if (statusDiv) statusDiv.innerHTML = '<span class="text-red-500 font-medium text-xs">Failed</span>';
+            }
+        } catch (err) {
+            console.error('Enrich single error:', err);
+            alert('Error running AI enrichment');
+            if (statusDiv) statusDiv.innerHTML = '';
+        } finally {
+            if (enrichBtn) { enrichBtn.disabled = false; enrichBtn.innerText = '✨ AI Enrich'; }
+        }
+    }
+
     function startEnrich() {
         const statusDiv = document.getElementById('enrichStatus');
         const btn = document.getElementById('enrichBtn');
         if (statusDiv) statusDiv.innerHTML = '<div class="w-4 h-4 border-2 border-emerald-300 border-t-emerald-600 rounded-full spinner"></div> <span>Connecting...</span>';
         if (btn) btn.disabled = true;
 
-        const evtSource = new EventSource('/api/enrich');
+        const evtSource = new EventSource('/api/enrich?limit=10');
 
         evtSource.onmessage = function(event) {
             try {
@@ -527,10 +604,10 @@
                 const msg = data?.message ?? '';
                 console.log('Enrich SSE:', msg);
                 if (statusDiv) statusDiv.innerHTML = `<span class="text-slate-600">${esc(msg)}</span>`;
-                if (msg.startsWith('Finished')) { loadData(); loadStats(); }
+                if (msg.includes('Enriched') || msg.includes('Finished')) { loadData(); loadStats(); }
                 if (data?.done) {
                     evtSource.close();
-                    if (statusDiv) statusDiv.innerHTML = '<span class="text-emerald-600 font-semibold">✓ Enrichment Complete!</span>';
+                    if (statusDiv) statusDiv.innerHTML = '<span class="text-emerald-600 font-semibold">✓ Batch Complete!</span>';
                     if (btn) btn.disabled = false;
                     loadData();
                     loadStats();
@@ -556,8 +633,21 @@
     ['filterQ', 'filterCity'].forEach(id => {
         document.getElementById(id)?.addEventListener('input', debouncedLoad);
     });
-    ['filterStatus', 'filterEmail', 'filterPhone', 'filterSort'].forEach(id => {
+    ['filterCategory', 'filterStatus', 'filterEmail', 'filterPhone', 'filterWebsite', 'filterSort'].forEach(id => {
         document.getElementById(id)?.addEventListener('change', () => { currentPage = 1; loadData(); });
+    });
+
+    document.getElementById('resetFiltersBtn')?.addEventListener('click', () => {
+        if (document.getElementById('filterQ')) document.getElementById('filterQ').value = '';
+        if (document.getElementById('filterCity')) document.getElementById('filterCity').value = '';
+        if (document.getElementById('filterCategory')) document.getElementById('filterCategory').value = 'all';
+        if (document.getElementById('filterStatus')) document.getElementById('filterStatus').value = 'all';
+        if (document.getElementById('filterEmail')) document.getElementById('filterEmail').value = '';
+        if (document.getElementById('filterPhone')) document.getElementById('filterPhone').value = '';
+        if (document.getElementById('filterWebsite')) document.getElementById('filterWebsite').value = '';
+        if (document.getElementById('filterSort')) document.getElementById('filterSort').value = 'newest';
+        currentPage = 1;
+        loadData();
     });
 
     // Esc key
